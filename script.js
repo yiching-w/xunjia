@@ -1,29 +1,31 @@
-let date = new Date("7,31,2022")
-
-let CountDay = document.getElementById("days")
-let CountHour = document.getElementById("hours")
-let CountMinutes = document.getElementById("minutes")
-let CountSeconds = document.getElementById("seconds")
-let Int = setInterval(UpdateTime, 1)
-
-function UpdateTime() {
-    let Now = new Date().getTime()
-    let distance = date - Now
-
-    CountDay.innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
-
-    CountHour.innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-    CountMinutes.innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-    CountSeconds.innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
-
-
-    if (distance < 0) {
-        clearInterval(Int)
-        document.getElementById("days").innerHTML = "00";
-        document.getElementById("hours").innerHTML = "00";
-        document.getElementById("minutes").innerHTML = "00";
-        document.getElementById("seconds").innerHTML = "00"
+const countdown = () => {
+    const countDate = new Date("July 31, 2022 23:59:59").getTime();
+    const now = new Date().getTime();
+    const gap = countDate - now;
+  
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+  
+    const textDay = Math.floor(gap / day);
+    const textHour = Math.floor((gap % day) / hour);
+    const textMinute = Math.floor((gap % hour) / minute);
+    const textSecond = Math.floor((gap % minute) / second);
+  
+    document.querySelector("#day").innerText = textDay;
+    document.querySelector("#hour").innerText = textHour;
+    document.querySelector("#minute").innerText = textMinute;
+    document.querySelector("#second").innerText = textSecond;
+  
+    if (gap <= 0) {
+      clearInterval(watchCountdown);
+      document.querySelector("#day").innerHTML = "00";
+      document.querySelector("#hour").innerHTML = "00";
+      document.querySelector("#minute").innerHTML = "00";
+      document.querySelector("#second").innerHTML = "00";
     }
-}
+  };
+  
+  let watchCountdown = setInterval(countdown, 1000);
+  
