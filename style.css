@@ -1856,3 +1856,7 @@ pre tt:before {
     margin-right: 10px;
     font-weight: 800;
 }
+
+a {
+    text-decoration: none;
+}
